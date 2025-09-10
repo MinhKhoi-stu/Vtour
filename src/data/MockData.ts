@@ -28,6 +28,11 @@ export type News = {
   view: number;
 };
 
+export type Stations = {
+  id: string;
+  name: string;
+};
+
 
 //Data
 //Venue
@@ -187,3 +192,21 @@ export const mockLocations = [
   "Cần Thơ",
   "Huế",
 ];
+
+//Stations
+// src/data/stations.ts
+export const stations : Stations[] = [
+  { id: "banh-thuoi", name: "Bành Thưởi" },
+  { id: "phang-truong", name: "Phang Trương" },
+  { id: "ha-noi", name: "Hà Nội" },
+  { id: "sai-gon", name: "Sài Gòn" },
+  { id: "banh-thuoi", name: "Bành Thưởi" },
+  { id: "phang-truong", name: "Phang Trương" },
+  { id: "ha-noi", name: "Hà Nội" },
+  { id: "sai-gon", name: "Sài Gòn" },
+  { id: "banh-thuoi", name: "Bành Thưởi" },
+  { id: "phang-truong", name: "Phang Trương" },
+  { id: "ha-noi", name: "Hà Nội" },
+  { id: "sai-gon", name: "Sài Gòn" },
+];
+

@@ -40,18 +40,18 @@
 
 // export default HeroBanner;
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const HeroBanner: React.FC = () => {
   return (
     <Box
       id="hero-banner"
       sx={{
-        height: { xs: 320, md: 480 }, 
+        height: { xs: 320, md: 400 }, 
         width: "100vw", 
         position: "relative",
         left: "49.4%",
-        transform: "translateX(-50%)",
+        transform: "translateX(-50%) translateY(-10%)",
         mt: 0,
         paddingTop: 0,
         backgroundImage: "url('/pur_sakura.png')",

@@ -32,8 +32,9 @@ const Login: React.FC<LoginProps> = ({ dialogMode = false, onClose }) => {
 
   const handleGuest = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/home");
-    if (dialogMode && onClose) onClose();
+    if (dialogMode && onClose) {
+      onClose();
+    }
   };
 
   return (

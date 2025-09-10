@@ -58,10 +58,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ locations, onSubmit }) => {
         borderRadius: 3,
         p: 3,
         bgcolor: "white",
+        color: "black",
         maxWidth: "1000px",
         mx: "auto",
         boxShadow: 3,
-        fontSize: "1.1rem", // tăng cỡ chữ tổng thể
+        fontSize: "1.1rem",
       }}
     >
       {/* Trip type + Hướng dẫn */}
@@ -89,12 +90,14 @@ const BookingForm: React.FC<BookingFormProps> = ({ locations, onSubmit }) => {
             sx={{ "& .MuiFormControlLabel-label": { fontSize: "1.1rem" } }}
           />
         </RadioGroup>
-        <Typography
-          color="secondary"
-          sx={{ fontWeight: 600, cursor: "pointer", fontSize: "1.1rem" }}
-        >
-          Hướng dẫn mua vé
-        </Typography>
+        <Button>
+          <Typography
+            color="secondary"
+            sx={{ fontWeight: 600, cursor: "pointer", fontSize: "1.1rem" }}
+          >
+            Hướng dẫn mua vé
+          </Typography>
+        </Button>
       </Box>
 
       {/* Input fields */}

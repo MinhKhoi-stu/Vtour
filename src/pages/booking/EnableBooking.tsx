@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Cart = () => {
+const EnableBooking = () => {
   return (
     <Box
       sx={{
@@ -12,8 +12,9 @@ const Cart = () => {
       }}
     >
       <Typography variant="h3" color="black">
-        Giỏ hàng của bạn
+        Đặt chỗ của bạn
       </Typography>
+
       <Box
         sx={{
           display: "flex",
@@ -21,20 +22,17 @@ const Cart = () => {
           justifyContent: "center",
           alignItems: "center",
           gap: 3,
-          mt: 2,
         }}
       >
         <img
-          //   src="/emptycart2.png"
-          src="/empty.png"
-          alt="img-empty-cart"
+          src="/emptycart.png"
+          alt="img-empty"
           style={{ width: "300px", height: "auto" }}
         />
 
         <Typography variant="h4" color="black">
-          Bạn không có gì bên trong...
+          Bạn chưa có giao dịch nào
         </Typography>
-
         <Button
           component={Link}
           to="/tours"
@@ -56,4 +54,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default EnableBooking;

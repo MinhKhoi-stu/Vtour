@@ -8,7 +8,7 @@ import {
   IconButton,
   Paper,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // ✅ thay vì Link
 import SearchIcon from "@mui/icons-material/Search";
 
 type NavbarProps = {
@@ -25,7 +25,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
         top: { xs: 56, md: 64 },
         left: 0,
         right: 0,
-
         backgroundColor: scrolled
           ? "rgba(255,255,255,0.95)"
           : "rgba(0,0,0,0.18)",
@@ -37,50 +36,39 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
     >
       <Toolbar sx={{ minHeight: 48, px: { xs: 2, md: 4 }, gap: 2 }}>
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", flexGrow: 1 }}>
-          <Button
-            component={Link}
-            to="/tours"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Tours
-          </Button>
-          <Button
-            component={Link}
-            to="/tickets"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Vé xe
-          </Button>
-          <Button
-            component={Link}
-            to="/stations"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Nhà xe
-          </Button>
-          <Button
-            component={Link}
-            to="/sales"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Ưu đãi
-          </Button>
-          <Button
-            component={Link}
-            to="/tips"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Cẩm nang du lịch
-          </Button>
-          <Button
-            component={Link}
-            to="/news"
-            sx={{ color: scrolled ? "text.secondary" : "white" }}
-          >
-            Tin tức
-          </Button>
+          {[
+            { label: "Tours", path: "/tours" },
+            { label: "Vé xe", path: "/tickets" },
+            { label: "Nhà xe", path: "/stations" },
+            { label: "Ưu đãi", path: "/sales" },
+            { label: "Cẩm nang du lịch", path: "/tips" },
+            { label: "Tin tức", path: "/news" },
+          ].map((item) => (
+            <Button
+              key={item.path}
+              component={NavLink}
+              to={item.path}
+              sx={{
+                color: scrolled ? "rgba(0,0,0,0.7)" : "white",
+                borderRadius: 2,
+                px: 2,
+                "&.active": {
+                  backgroundColor: "rgba(137, 43, 226, 0.62)",
+                  color: "white",
+                  fontWeight: "bold",
+                },
+                "&:hover": {
+                  backgroundColor: "rgba(138,43,226,0.1)",
+                },
+                transition: "all 0.3s ease",
+              }}
+            >
+              {item.label}
+            </Button>
+          ))}
         </Box>
 
+        {/* Search box */}
         <Box sx={{ width: { xs: "100%", sm: "auto" }, maxWidth: 300 }}>
           <Paper
             component="form"
@@ -102,7 +90,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
               sx={{ ml: 1, flex: 1, color: "secondary" }}
               placeholder="Tìm kiếm..."
               inputProps={{ "aria-label": "search" }}
-              // onChange={(e) => setQuery(e.target.value)}  <-- để tích hợp API sau này
             />
             <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />

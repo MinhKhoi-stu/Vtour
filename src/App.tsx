@@ -7,11 +7,14 @@ import {MainLayout} from './layouts'
 import Home from './pages/home/Home'
 import Tours from './pages/tours/Tours'
 import Tickets from './pages/tickets/Tickets'
-import Stations from './pages/stations/Stations'
 import Sales from './pages/sales/Sales'
 import Tips from './pages/tips/Tips'
 import Cart from './pages/cart/Cart'
 import News from './pages/news/News'
+import StationsList from './pages/stations/StationsList'
+import StationBooking from './pages/stations/StationBooking'
+import TicketCancellation from './pages/cancellation/TicketCancellation'
+import EnableBooking from './pages/booking/EnableBooking'
 
 
 function App() {
@@ -26,11 +29,14 @@ function App() {
         <Route path="/home" element={<MainLayout><Home/></MainLayout>} />
         <Route path="/tours" element={<MainLayout><Tours/></MainLayout>} />
         <Route path="/tickets" element={<MainLayout><Tickets/></MainLayout>} />
-        <Route path="/stations" element={<MainLayout><Stations/></MainLayout>} />
+        <Route path="/stations" element={<MainLayout><StationsList/></MainLayout>} />
+        <Route path="/stations/:stationId" element={<MainLayout><StationBooking/></MainLayout>} />
         <Route path="/sales" element={<MainLayout><Sales/></MainLayout>} />
         <Route path="/tips" element={<MainLayout><Tips/></MainLayout>} />
         <Route path="/cart" element={<MainLayout><Cart/></MainLayout>} />
         <Route path="/news" element={<MainLayout><News/></MainLayout>} />
+        <Route path="/cancellation" element={<MainLayout><TicketCancellation/></MainLayout>} />
+        <Route path="/booking" element={<MainLayout><EnableBooking/></MainLayout>} />
       </Routes>
     </BrowserRouter>
   )

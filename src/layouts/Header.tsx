@@ -8,7 +8,7 @@ import {
   Dialog,
   DialogContent,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Login from "../pages/login/Login";
@@ -18,10 +18,13 @@ type HeaderProps = {
   scrolled: boolean;
 };
 
-const Header: React.FC<HeaderProps> = ({ scrolled }) => {
-  // const theme = useTheme();
-  // const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+const menuItems = [
+  { label: "Hủy vé", path: "/cancellation" },
+  { label: "Đặt chỗ của tôi", path: "/booking" },
+  { label: "Giỏ hàng", path: "/cart", icon: <ShoppingCartIcon /> },
+];
 
+const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
 
@@ -81,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
 
         {/* Right actions */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          {/* price language (hidden on xs) */}
+          {/* price language */}
           <Typography
             variant="body2"
             sx={{
@@ -92,44 +95,47 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
             15.000 VND | VI
           </Typography>
 
-          <Button
-            color="inherit"
-            size="small"
-            sx={{
-              color: scrolled ? "text.secondary" : "rgba(255,255,255,0.95)",
-            }}
-          >
-            Hỗ trợ
-          </Button>
+          {/* Menu buttons */}
+          {menuItems.map((item) => (
+            <Button
+              key={item.path}
+              component={NavLink}
+              to={item.path}
+              size="small"
+              sx={{
+                color: scrolled ? "rgba(0,0,0,0.7)" : "white",
+                borderRadius: 2,
+                px: item.icon ? 1 : 2,
+                minWidth: item.icon ? 40 : undefined,
+                "&.active": {
+                  backgroundColor: "rgba(137, 43, 226, 0.62)",
+                  color: "white",
+                  fontWeight: "bold",
+                },
+                "&:hover": {
+                  backgroundColor: "rgba(138,43,226,0.1)",
+                },
+                transition: "all 0.3s ease",
+              }}
+            >
+              {item.icon ? item.icon : item.label}
+            </Button>
+          ))}
 
-          <Button
-            color="inherit"
-            size="small"
-            sx={{
-              color: scrolled ? "text.secondary" : "rgba(255,255,255,0.95)",
-            }}
-          >
-            Đặt chỗ của tôi
-          </Button>
-
-          {/* Login / Register button */}
+          {/* Login / Register */}
           <Button
             sx={{
               bgcolor: scrolled ? "transparent" : "rgba(255,255,255,0.12)",
               color: scrolled ? "blueviolet" : "white",
-              transition: "transform 0.18s ease, background-color 0.18s ease",
               "&:hover": {
                 transform: "scale(1.05)",
                 backgroundColor: scrolled
                   ? "transparent"
                   : "rgba(255,255,255,0.16)",
-                color: scrolled ? "blueviolet" : "white",
               },
             }}
             variant={scrolled ? "text" : "contained"}
             size="small"
-            // component={Link}
-            // to="/login"
             onClick={() => setOpenLogin(true)}
           >
             Đăng nhập
@@ -138,17 +144,13 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           <Button
             variant="contained"
             size="small"
-            // component={Link}
-            // to="/register"
             onClick={() => setOpenRegister(true)}
             sx={{
               bgcolor: "blueviolet",
               color: "white",
-              transition: "transform 0.18s ease, background-color 0.18s ease",
               "&:hover": {
                 transform: "scale(1.05)",
                 backgroundColor: "blueviolet",
-                color: "white",
               },
             }}
           >
@@ -156,34 +158,11 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
           </Button>
 
           <Button
-            component={Link}
-            to="/cart"
-            sx={{
-              color: scrolled ? "text.secondary" : "rgba(255,255,255,0.95)",
-              transition: "transform 0.18s ease, background-color 0.18s ease",
-              "&:hover": {
-                transform: "scale(1.05)",
-                backgroundColor: scrolled
-                  ? "transparent"
-                  : "rgba(255,255,255,0.06)",
-                color: scrolled ? "text.secondary" : "white",
-              },
-            }}
-            aria-label="cart"
-          >
-            <ShoppingCartIcon />
-          </Button>
-
-          <Button
             sx={{
               color: scrolled ? "blueviolet" : "rgba(255,255,255,0.95)",
-              transition: "transform 0.18s ease, background-color 0.18s ease",
               "&:hover": {
                 transform: "scale(1.05)",
-                backgroundColor: scrolled
-                  ? "transparent"
-                  : "rgba(255,255,255,0.06)",
-                color: scrolled ? "blueviolet" : "white",
+                backgroundColor: "rgba(138,43,226,0.1)",
               },
             }}
             aria-label="profile"
@@ -198,7 +177,6 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         open={openLogin}
         onClose={() => setOpenLogin(false)}
         fullWidth
-        // maxWidth="xs"
         PaperProps={{ sx: { borderRadius: 3 } }}
       >
         <DialogContent sx={{ p: 0 }}>
@@ -211,7 +189,6 @@ const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         open={openRegister}
         onClose={() => setOpenRegister(false)}
         fullWidth
-        // maxWidth="xs"
         PaperProps={{ sx: { borderRadius: 3 } }}
       >
         <DialogContent sx={{ p: 0 }}>

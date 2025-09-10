@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LockIcon from "@mui/icons-material/Lock";
@@ -30,6 +25,13 @@ const Register: React.FC<RegisterProps> = ({ dialogMode = false, onClose }) => {
       onClose();
     } else {
       navigate(-1);
+    }
+  };
+
+  const handleGuest = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (dialogMode && onClose) {
+      onClose();
     }
   };
 
@@ -91,7 +93,11 @@ const Register: React.FC<RegisterProps> = ({ dialogMode = false, onClose }) => {
         </MuiLink>
       </Typography> */}
 
-      <Button fullWidth sx={{ mt: 2, bgcolor: "blueviolet", color: "white" }}>
+      <Button
+        fullWidth
+        sx={{ mt: 2, bgcolor: "blueviolet", color: "white" }}
+        onClick={handleGuest}
+      >
         Tiếp tục với tư cách khách
       </Button>
     </Box>

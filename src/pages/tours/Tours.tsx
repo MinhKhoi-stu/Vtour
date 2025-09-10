@@ -16,7 +16,6 @@ const Tours = () => {
       <Box sx={{
         display: "flex",
         flexDirection: "column",
-        color: "black",
         gap: 2,
       }}>
         <Typography variant="h3" color="black">
